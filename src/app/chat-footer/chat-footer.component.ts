@@ -18,6 +18,6 @@ export class ChatFooterComponent{
   input: FormControl = new FormControl();
 
   sendMessage() {
-
+    this.messageService.sendMessage(this.input.value);
   }
 }
