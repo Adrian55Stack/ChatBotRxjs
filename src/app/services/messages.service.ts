@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { IMessage } from '../models/message.model';
-import { delay, filter, first, map, merge, scan, Subject, take } from 'rxjs';
+import { delay, last, map, merge, scan, Subject, take } from 'rxjs';
 import { BotService } from './bot.service';
 
 @Injectable({
@@ -18,6 +18,9 @@ export class MessagesService {
   sendMessage(text: string) {
     this.userMessage$.next(text);
   }
+  endConversation(): void {
+    this.userMessage$.complete();
+  }
 
   get messages() {
     return this.messages$.asObservable();
@@ -33,7 +36,7 @@ export class MessagesService {
       ));
 
     const botStream = this.userMessage$.pipe(
-        delay(1000),
+        delay(2000),
         map(msg => <IMessage>({
           author: 'bot',
           content: `Hello`,
@@ -45,13 +48,20 @@ export class MessagesService {
     merge(userStream, botStream).pipe(
       scan((acc: IMessage[], msg: IMessage) => [...acc, msg],[])
     ).subscribe(this.messages$);
-
     //why?
 
     this.setBotAvailability();
   }
 
   setBotAvailability(): void {
-    this.userMessage$.pipe(delay(500),take(1)).subscribe(() => this.botService.setBotAvailability(true));
+    this.userMessage$.pipe(
+      delay(1000),
+      take(1)
+    ).subscribe(() => this.botService.setBotAvailability(true));
+
+    this.userMessage$.pipe(
+      last(),
+      delay(1000),
+    ).subscribe(() => this.botService.setBotAvailability(false));
   }
 }

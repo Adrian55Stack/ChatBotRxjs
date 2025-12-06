@@ -20,4 +20,8 @@ export class ChatFooterComponent{
   sendMessage() {
     this.messageService.sendMessage(this.input.value);
   }
+
+  endConversation() {
+    this.messageService.endConversation();
+  }
 }
