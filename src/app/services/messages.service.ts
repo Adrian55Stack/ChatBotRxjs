@@ -16,6 +16,10 @@ export class MessagesService {
     this.userMessage$.next(text);
   }
 
+  get messages() {
+    return this.messages$.asObservable();
+  }
+
   initializeResponses() {
     const userStream = this.userMessage$.pipe(
       map(msg => <IMessage>({
@@ -26,10 +30,10 @@ export class MessagesService {
       ));
 
     const botStream = this.userMessage$.pipe(
-        delay(500),
+        delay(1000),
         map(msg => <IMessage>({
           author: 'bot',
-          content: `Echo: ${msg}`,
+          content: `Hello`,
           time: new Date()
         }))
     );

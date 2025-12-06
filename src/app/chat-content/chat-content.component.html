@@ -1,10 +1,16 @@
 <mat-accordion>
     <mat-expansion-panel disabled expanded>
-        @if(!messages.length) {
+        @if(!(messages | async)?.length) {
             <p>No Messages.</p>
         }
         @else {
-            <p>Message</p>
+            @for(message of (messages | async); track message?.content) {
+                <div class="d-flex">
+                    <p>({{message.time | date: 'mediumTime'}})</p>
+                    <strong class="pe-2">{{message.author}}:</strong>
+                    <p>{{message.content}}</p>
+                </div>
+            }
         }
     </mat-expansion-panel>
 </mat-accordion>
