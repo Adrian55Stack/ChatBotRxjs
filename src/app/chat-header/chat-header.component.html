@@ -1,1 +1,12 @@
-Bot Status: offline
+<span class="d-flex">
+    Bot Status:
+    @if(availability | async) {
+        <p class="fw-700 text-success">
+            Online
+        </p>
+    } @else {
+        <p class="fw-700 text-danger">
+            Offline
+        </p>
+    }
+</span>
