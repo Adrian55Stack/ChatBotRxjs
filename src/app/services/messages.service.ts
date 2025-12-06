@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { IMessage } from '../models/message.model';
-import { delay, last, map, merge, scan, Subject, take } from 'rxjs';
+import { delay, first, last, map, merge, scan, Subject } from 'rxjs';
 import { BotService } from './bot.service';
 
 @Injectable({
@@ -55,8 +55,8 @@ export class MessagesService {
 
   setBotAvailability(): void {
     this.userMessage$.pipe(
+      first(),
       delay(1000),
-      take(1)
     ).subscribe(() => this.botService.setBotAvailability(true));
 
     this.userMessage$.pipe(

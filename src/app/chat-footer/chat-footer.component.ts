@@ -19,6 +19,7 @@ export class ChatFooterComponent{
 
   sendMessage() {
     this.messageService.sendMessage(this.input.value);
+    this.input.reset();
   }
 
   endConversation() {
