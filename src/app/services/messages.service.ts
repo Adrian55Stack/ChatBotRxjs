@@ -1,11 +1,14 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { IMessage } from '../models/message.model';
-import { delay, filter, map, merge, scan, Subject } from 'rxjs';
+import { delay, filter, first, map, merge, scan, Subject, take } from 'rxjs';
+import { BotService } from './bot.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessagesService {
+  botService = inject(BotService);
+
   private userMessage$ = new Subject<string>();
   private messages$ = new Subject<IMessage[]>();
   constructor() {
@@ -38,10 +41,17 @@ export class MessagesService {
         }))
     );
 
+
     merge(userStream, botStream).pipe(
       scan((acc: IMessage[], msg: IMessage) => [...acc, msg],[])
     ).subscribe(this.messages$);
 
     //why?
+
+    this.setBotAvailability();
+  }
+
+  setBotAvailability(): void {
+    this.userMessage$.pipe(delay(500),take(1)).subscribe(() => this.botService.setBotAvailability(true));
   }
 }
