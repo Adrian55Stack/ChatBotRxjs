@@ -1,16 +1,13 @@
 <mat-accordion>
     <mat-expansion-panel disabled expanded>
-        @if(!(messages | async)?.length) {
-            <p>No Messages.</p>
-        }
-        @else {
-            @for(message of (messages | async); track message?.content) {
-                <div class="d-flex">
-                    <p>({{message.time | date: 'mediumTime'}})</p>
-                    <strong class="pe-2">{{message.author}}:</strong>
-                    <p>{{message.content}}</p>
-                </div>
-            }
+        @for(message of (messages | async); track message?.content) {
+        <div class="d-flex">
+            <p>({{message.time | date: 'mediumTime'}})</p>
+            <strong class="pe-2">{{message.author}}:</strong>
+            <p>{{message.content}}</p>
+        </div>
+        } @empty {
+        <div> No Messages</div>
         }
     </mat-expansion-panel>
 </mat-accordion>
