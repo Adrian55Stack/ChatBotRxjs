@@ -9,25 +9,30 @@ import { BotService } from './bot.service';
 export class MessagesService {
   botService = inject(BotService);
 
-  private userMessage$ = new Subject<string>();
-  private messages$ = new Subject<IMessage[]>();
+  private message$ = new Subject<string>();
+  private messagesList$ = new Subject<IMessage[]>();
   constructor() {
     this.initializeResponses();
   }
 
-  sendMessage(text: string) {
-    this.userMessage$.next(text);
+  setMessage(text: string) {
+    this.message$.next(text);
   }
+
+  getMessage() {
+    this.message$.asObservable();
+  }
+
   endConversation(): void {
-    this.userMessage$.complete();
+    this.message$.complete();
   }
 
   get messages() {
-    return this.messages$.asObservable();
+    return this.messagesList$.asObservable();
   }
 
   initializeResponses() {
-    const userStream = this.userMessage$.pipe(
+    const userStream = this.message$.pipe(
       map(msg => <IMessage>({
           author: 'user',
           content: msg,
@@ -35,7 +40,7 @@ export class MessagesService {
         })
       ));
 
-    const botStream = this.userMessage$.pipe(
+    const botStream = this.message$.pipe(
         delay(2000),
         map(msg => <IMessage>({
           author: 'bot',
@@ -47,19 +52,19 @@ export class MessagesService {
 
     merge(userStream, botStream).pipe(
       scan((acc: IMessage[], msg: IMessage) => [...acc, msg],[])
-    ).subscribe(this.messages$);
+    ).subscribe(this.messagesList$);
     //why?
 
     this.setBotAvailability();
   }
 
   setBotAvailability(): void {
-    this.userMessage$.pipe(
+    this.message$.pipe(
       first(),
       delay(1000),
     ).subscribe(() => this.botService.setBotAvailability(true));
 
-    this.userMessage$.pipe(
+    this.message$.pipe(
       last(),
       delay(1000),
     ).subscribe(() => this.botService.setBotAvailability(false));
