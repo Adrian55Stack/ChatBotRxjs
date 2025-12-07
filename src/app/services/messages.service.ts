@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { IMessage } from '../models/message.model';
-import { delay, first, last, map, merge, scan, Subject } from 'rxjs';
+import { merge, scan, Subject } from 'rxjs';
 import { BotService } from './bot.service';
 import { UserService } from './user.service';
 
