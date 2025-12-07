@@ -5,6 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon'
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MessagesService } from '../services/messages.service';
+import { CoreMessageService } from '../services/core-message.service';
 
 @Component({
   selector: 'app-chat-footer',
@@ -13,16 +14,16 @@ import { MessagesService } from '../services/messages.service';
   styleUrl: './chat-footer.component.scss'
 })
 export class ChatFooterComponent{
-  messageService = inject(MessagesService);
+  coreMessageService = inject(CoreMessageService);
 
   input: FormControl = new FormControl();
 
   sendMessage() {
-    this.messageService.setMessage(this.input.value);
+    this.coreMessageService.setMessage(this.input.value);
     this.input.reset();
   }
 
   endConversation() {
-    this.messageService.endConversation();
+    this.coreMessageService.endConversation();
   }
 }
