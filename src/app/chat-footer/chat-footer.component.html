@@ -3,7 +3,7 @@
     <input matInput [formControl]="input">
 </mat-form-field>
 
-<button mat-fab extended (click)="sendMessage()">
+<button mat-fab extended (click)="sendMessage()" [disabled]="isDisabled$ | async">
     <mat-icon>send</mat-icon>
     Send
 </button>
