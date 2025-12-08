@@ -25,7 +25,6 @@ export class MessagesService {
   private listenConversation() {
     merge(this.userService.getUserStream(), this.botService.getBotStream()).pipe(
       scan((acc: IMessage[], msg: IMessage) => [...acc, msg],[])
-    ).subscribe(this.messagesList$);
-    //why?
+    ).subscribe(value => this.messagesList$.next(value));
   }
 }
