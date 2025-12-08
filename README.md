@@ -60,8 +60,9 @@ For more information on using the Angular CLI, including detailed command refere
 
 
 ## RXJS Operators Used:
-map
-delay
-first
-last
-merge
+* map
+* delay
+* first
+* last
+* merge
+* distinctUntilChanged

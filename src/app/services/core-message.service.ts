@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { distinctUntilChanged, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class CoreMessageService {
   }
 
   getMessage() {
-    return this.message$.asObservable();
+    return this.message$.asObservable().pipe(distinctUntilChanged());
   }
 
   endConversation(): void {
