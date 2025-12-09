@@ -60,6 +60,7 @@ For more information on using the Angular CLI, including detailed command refere
 
 
 ## RXJS Operators Used:
+* pipe
 * map
 * delay
 * first
@@ -68,3 +69,4 @@ For more information on using the Angular CLI, including detailed command refere
 * distinctUntilChanged
 * debounceTime
 * filter
+* tap

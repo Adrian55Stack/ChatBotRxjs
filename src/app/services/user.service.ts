@@ -19,6 +19,7 @@ export class UserService {
   defineUserStream() {
     this.userStream = this.coreMessagesService.getMessage().pipe(
       map(msg => <IMessage>({
+        id: new Date().getTime(),
         author: 'user',
         content: msg,
         time: new Date()

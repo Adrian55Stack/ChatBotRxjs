@@ -38,6 +38,7 @@ export class BotService {
     this.botStream = this.coreMessagesService.getMessage().pipe(
       delay(this.replyDelay),
       map(msg => <IMessage>({
+        id: new Date().getTime(),
         author: 'bot',
         content: `Hello`,
         time: new Date()

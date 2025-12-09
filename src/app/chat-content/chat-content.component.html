@@ -1,8 +1,8 @@
 <mat-accordion>
     <mat-expansion-panel disabled expanded class="chat-content-panel">
-        @for(message of (messages | async); track message?.content) {
+        @for(message of (messages | async); track message?.id) {
         <div class="d-flex">
-            <p>({{message.time | date: 'mediumTime'}})</p>
+            <p [id]="message?.id">({{message.time | date: 'mediumTime'}})</p>
             <strong class="pe-2">{{message.author}}:</strong>
             <p>{{message.content}}</p>
         </div>
