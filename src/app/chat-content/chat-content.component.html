@@ -1,5 +1,5 @@
 <mat-accordion>
-    <mat-expansion-panel disabled expanded>
+    <mat-expansion-panel disabled expanded class="chat-content-panel">
         @for(message of (messages | async); track message?.content) {
         <div class="d-flex">
             <p>({{message.time | date: 'mediumTime'}})</p>
