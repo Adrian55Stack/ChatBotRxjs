@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { MessagesService } from './messages.service';
-import { map, Observable, Subject } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { IMessage } from '../models/message.model';
 import { CoreMessageService } from './core-message.service';
 
