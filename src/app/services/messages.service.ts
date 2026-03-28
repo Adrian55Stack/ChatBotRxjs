@@ -12,8 +12,8 @@ export class MessagesService {
   botService = inject(BotService);
   userService = inject(UserService);
 
-  private messagesList$ = new Subject<IMessage[]>();
-  private scrollIntoViewEvent = new Subject<number>();
+  private readonly messagesList$ = new Subject<IMessage[]>();
+  private readonly scrollIntoViewEvent = new Subject<number>();
 
   constructor() {
     this.listenConversation();

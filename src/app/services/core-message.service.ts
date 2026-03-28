@@ -5,7 +5,7 @@ import { distinctUntilChanged, filter, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class CoreMessageService {
-  private message$ = new Subject<string>();
+  private readonly message$ = new Subject<string>();
 
   constructor() { }
 

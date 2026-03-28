@@ -13,8 +13,8 @@ export class BotService {
   private readonly botIsTypingDelay = 2000;
   private readonly replyDelay = 3000;
 
-  private availability: Subject<boolean> = new Subject();
-  private isTyping: Subject<boolean> = new Subject();
+  private readonly availability: Subject<boolean> = new Subject();
+  private readonly isTyping: Subject<boolean> = new Subject();
 
   private botStream: Observable<IMessage>;
 
@@ -38,7 +38,7 @@ export class BotService {
     this.botStream = this.coreMessagesService.getMessage().pipe(
       delay(this.replyDelay),
       map(() => <IMessage>({
-        id: new Date().getTime(),
+        id: Date.now(),
         author: 'bot',
         content: `Hello`,
         time: new Date()
