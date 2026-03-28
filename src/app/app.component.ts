@@ -6,8 +6,7 @@ import {MatCardModule} from '@angular/material/card';
 @Component({
   selector: 'app-root',
   imports: [ChatHeaderComponent, ChatContentComponent, ChatFooterComponent, MatCardModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'ChatBotRxjs';
