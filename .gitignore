@@ -8,6 +8,7 @@
 
 # Node
 /ChatBotFE/node_modules
+/ChatBotBE/node_modules
 npm-debug.log
 yarn-error.log
 
