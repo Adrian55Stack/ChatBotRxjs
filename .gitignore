@@ -22,11 +22,11 @@ yarn-error.log
 
 # Visual Studio Code
 ./ChatBotFE/vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+!./ChatBotFE/vscode/settings.json
+!./ChatBotFE/vscode/tasks.json
+!./ChatBotFE/vscode/launch.json
+!./ChatBotFE/vscode/extensions.json
+./ChatBotFE/history/*
 
 # Miscellaneous
 /ChatBotFE/.angular/cache
