@@ -7,7 +7,7 @@
 /bazel-out
 
 # Node
-/node_modules
+/ChatBotFE/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -21,18 +21,18 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+./ChatBotFE/vscode/*
+!./ChatBotFE/vscode/settings.json
+!./ChatBotFE/vscode/tasks.json
+!./ChatBotFE/vscode/launch.json
+!./ChatBotFE/vscode/extensions.json
+./ChatBotFE/history/*
 
 # Miscellaneous
-/.angular/cache
+/ChatBotFE/.angular/cache
 .sass-cache/
 /connect.lock
-/coverage
+/ChatBotFE/coverage
 /libpeerconnection.log
 testem.log
 /typings
