@@ -21,12 +21,12 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-./ChatBotFE/vscode/*
-!./ChatBotFE/vscode/settings.json
-!./ChatBotFE/vscode/tasks.json
-!./ChatBotFE/vscode/launch.json
-!./ChatBotFE/vscode/extensions.json
-./ChatBotFE/history/*
+.vscode/*
+!vscode/settings.json
+!vscode/tasks.json
+!vscode/launch.json
+!vscode/extensions.json
+.history/*
 
 # Miscellaneous
 /ChatBotFE/.angular/cache
