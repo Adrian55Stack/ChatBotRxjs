@@ -15,5 +15,9 @@
     "env": "^0.0.2",
     "express": "^5.2.1",
     "groq-sdk": "^1.1.2"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "supertest": "^7.2.2"
   }
 }
