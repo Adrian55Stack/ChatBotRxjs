@@ -3,6 +3,7 @@ import 'dotenv/config';
 import chatRoutes from './routes/chatRoutes.js'
 
 const app = express();
+app.disable("x-powered-by");
 app.use(json());
 
 app.use('/api', chatRoutes);
