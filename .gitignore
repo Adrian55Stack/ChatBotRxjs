@@ -1,13 +1,11 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
-/ChatBotFE/dist
 /tmp
 /out-tsc
 /bazel-out
 
 # Node
-/ChatBotFE/node_modules
 /ChatBotBE/node_modules
 npm-debug.log
 yarn-error.log
@@ -30,10 +28,8 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/ChatBotFE/.angular/cache
 .sass-cache/
 /connect.lock
-/ChatBotFE/coverage
 /libpeerconnection.log
 testem.log
 /typings
