@@ -15,7 +15,7 @@ export class CoreMessageService {
 
   getMessage() {
     return this.message$.asObservable().pipe(
-      filter(msg => !!msg.trim()),
+      filter((msg: any) => !!msg.trim()),
       distinctUntilChanged());
   }
 
