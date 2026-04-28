@@ -1,6 +1,6 @@
 import express, { json } from 'express';
 import 'dotenv/config';
-import chatRoutes from './routes/chatRoutes.js'
+import chatRoutes from './src/routes/chatRoutes.js'
 
 const app = express();
 app.disable("x-powered-by");
