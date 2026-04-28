@@ -10,6 +10,17 @@ jobs:
     name: SonarQube
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v3
+
+      - name: Install BE dependencies
+        run: npm install
+        working-directory: ChatBotBE
+
+      - name: Run BE tests with coverage
+        run: npm run test:coverage
+        working-directory: ChatBotBE
+
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
