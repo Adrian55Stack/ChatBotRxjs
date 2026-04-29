@@ -1,72 +1,136 @@
-# ChatBotRxjs
+# ChatBot RxJS — AI Chatbot
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
+A full-stack AI chatbot application built with **Angular** (frontend) and **Node.js** (backend). The frontend leverages RxJS for reactive data streams, while the backend exposes a REST API that proxies messages to a **LLaMA** language model via the Groq API.
 
-## Development server
+---
 
-To start a local development server, run:
+## Project Structure
 
-```bash
-ng serve
+```
+ChatBotRxjs/
+├── ChatBotFE/          # Angular frontend
+├── ChatBotBE/          # Node.js backend
+├── .gitignore          # Root-level gitignore
+├── sonar-project.properties
+└── README.md
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Frontend — ChatBotFE
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Built with **Angular** and **RxJS**, the frontend manages all user interactions and AI responses through reactive streams using observables, subjects, and pipeable operators.
 
-```bash
-ng generate component component-name
-```
+### Tech Stack
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Angular
+- TypeScript
+- RxJS — observables, subjects, async pipes
+- Node.js (Angular CLI tooling)
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Setup
 
 ```bash
-ng build
+cd ChatBotFE
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Run
 
 ```bash
-ng test
+npm start
 ```
 
-## Running end-to-end tests
+The app runs at `http://localhost:4200` by default.
 
-For end-to-end (e2e) testing, run:
+### Test
 
 ```bash
-ng e2e
+npm run test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### Build
 
-## Additional Resources
+```bash
+npm run build
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Output is generated in `ChatBotFE/dist/`.
 
+---
 
-## RXJS Operators Used:
-* pipe
-* map
-* delay
-* first
-* last
-* merge
-* distinctUntilChanged
-* debounceTime
-* filter
-* tap
+## Backend — ChatBotBE
+
+A lightweight **Node.js + Express** server that exposes a REST API endpoint. Incoming messages from the frontend are forwarded to a **LLaMA 3.3 70B** model via the Groq API and the response is returned to the client.
+
+### Tech Stack
+
+- Node.js
+- Express
+- Groq SDK (LLaMA 3.3 70B)
+- dotenv
+
+### Setup
+
+```bash
+cd ChatBotBE
+npm install
+```
+
+Create a `.env` file in `ChatBotBE/`:
+
+```env
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+### Run
+
+```bash
+npm start
+```
+
+The server runs at `http://localhost:4000`.
+
+### Test
+
+```bash
+npm run test
+npm run test:coverage   # with coverage report
+```
+
+### Build
+
+No compilation step required — Node.js runs the source directly.
+
+---
+
+## CI/CD
+
+GitHub Actions workflows are defined in `.github/workflows/` and run on every push to `main` and on pull requests.
+
+The pipeline:
+1. Checks out the repository
+2. Installs dependencies for each project
+3. Runs tests and generates coverage reports
+
+---
+
+## .gitignore Setup
+
+The project uses three `.gitignore` files:
+
+| File | Scope |
+|------|-------|
+| `/.gitignore` | Root — ignores workflow artifacts, editor files, OS files |
+| `/ChatBotFE/.gitignore` | Angular-specific — `node_modules`, `dist`, `coverage` |
+| `/ChatBotBE/.gitignore` | Node.js-specific — `node_modules`, `coverage`, `.env` |
+
+> ⚠️ Never commit your `.env` file. Your `GROQ_API_KEY` should be stored as a GitHub Actions secret and injected at runtime.
+
+---
+
+## Prerequisites
+
+- Node.js v18+
+- npm v9+
+- A valid [Groq API key](https://console.groq.com)
