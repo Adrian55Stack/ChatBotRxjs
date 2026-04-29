@@ -21,5 +21,3 @@ jobs:
       - name: Run FE tests
         run: npm run test
         working-directory: ChatBotFE
-        env:
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
