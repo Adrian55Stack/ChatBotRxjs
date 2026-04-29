@@ -1,0 +1,23 @@
+name: Build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  testCheck:
+    name: TestCheckFE
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install FE dependencies
+        run: npm install
+        working-directory: ChatBotFE
+
+      - name: Run FE tests
+        run: npm run test
+        working-directory: ChatBotFE
