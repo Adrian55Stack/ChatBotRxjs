@@ -1,72 +1,67 @@
 # ChatBotRxjs
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
+Main monorepo for the ChatBot fullstack application. Composed of two independent submodules — a frontend and a backend — each maintained in their own repository.
 
-## Development server
+---
 
-To start a local development server, run:
+## Project Structure
 
-```bash
-ng serve
-```
+ChatBotRxjs/
+├── ChatBotFE/          # Angular frontend submodule
+├── ChatBotBE/          # Node.js backend submodule
+├── .gitmodules
+├── .gitignore
+└── README.md
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Submodules
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- [ChatBotFE](https://github.com/Adrian55Stack/ChatBotFE) — Angular 19 frontend, handles UI and API calls towards the backend
+- [ChatBotBE](https://github.com/Adrian55Stack/ChatBotBE) — Node.js backend, receives client calls and forwards them to Grok AI
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Getting Started
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Clone with submodules
 
 ```bash
-ng build
+git clone --recurse-submodules https://github.com/Adrian55Stack/ChatBotRxjs
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+If you already cloned without submodules:
 
 ```bash
-ng test
+git submodule update --init --recursive
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Update submodules to latest
 
 ```bash
-ng e2e
+git submodule update --remote
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## Prerequisites
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Node.js v18+
+- npm v9+
+- A valid Grok API key
 
+---
 
-## RXJS Operators Used:
-* pipe
-* map
-* delay
-* first
-* last
-* merge
-* distinctUntilChanged
-* debounceTime
-* filter
-* tap
+## CI/CD
+
+GitHub Actions workflows are defined in `.github/workflows/` and run on every push to `main` and on pull requests. Each submodule has its own independent pipeline.
+
+---
+
+## .gitignore Setup
+
+| File | Scope |
+|------|-------|
+| `/.gitignore` | Root — ignores workflow artifacts, editor files, OS files |
+| `/ChatBotFE/.gitignore` | Angular-specific — `node_modules`, `dist`, `coverage` |
+| `/ChatBotBE/.gitignore` | Node.js-specific — `node_modules`, `coverage`, `.env` |

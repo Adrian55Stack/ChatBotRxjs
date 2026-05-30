@@ -1,0 +1,6 @@
+[submodule "ChatBotFE"]
+	path = ChatBotFE
+	url = https://github.com/Adrian55Stack/ChatBotFE
+[submodule "ChatBotBE"]
+	path = ChatBotBE
+	url = https://github.com/Adrian55Stack/ChatBotBE
