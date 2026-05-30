@@ -1,131 +1,46 @@
-# ChatBot RxJS — AI Chatbot
+# ChatBotRxjs
 
-A full-stack AI chatbot application built with **Angular** (frontend) and **Node.js** (backend). The frontend leverages RxJS for reactive data streams, while the backend exposes a REST API that proxies messages to a **LLaMA** language model via the Groq API.
+Main monorepo for the ChatBot fullstack application. Composed of two independent submodules — a frontend and a backend — each maintained in their own repository.
 
 ---
 
 ## Project Structure
 
-```
 ChatBotRxjs/
-├── ChatBotFE/          # Angular frontend
-├── ChatBotBE/          # Node.js backend
-├── .gitignore          # Root-level gitignore
-├── sonar-project.properties
+├── ChatBotFE/          # Angular frontend submodule
+├── ChatBotBE/          # Node.js backend submodule
+├── .gitmodules
+├── .gitignore
 └── README.md
-```
 
 ---
 
-## Frontend — ChatBotFE
+## Submodules
 
-Built with **Angular** and **RxJS**, the frontend manages all user interactions and AI responses through reactive streams using observables, subjects, and pipeable operators.
-
-### Tech Stack
-
-- Angular
-- TypeScript
-- RxJS — observables, subjects, async pipes
-- Node.js (Angular CLI tooling)
-
-### Setup
-
-```bash
-cd ChatBotFE
-npm install
-```
-
-### Run
-
-```bash
-npm start
-```
-
-The app runs at `http://localhost:4200` by default.
-
-### Test
-
-```bash
-npm run test
-```
-
-### Build
-
-```bash
-npm run build
-```
-
-Output is generated in `ChatBotFE/dist/`.
+- [ChatBotFE](https://github.com/Adrian55Stack/ChatBotFE) — Angular 19 frontend, handles UI and API calls towards the backend
+- [ChatBotBE](https://github.com/Adrian55Stack/ChatBotBE) — Node.js backend, receives client calls and forwards them to Grok AI
 
 ---
 
-## Backend — ChatBotBE
+## Getting Started
 
-A lightweight **Node.js + Express** server that exposes a REST API endpoint. Incoming messages from the frontend are forwarded to a **LLaMA 3.3 70B** model via the Groq API and the response is returned to the client.
-
-### Tech Stack
-
-- Node.js
-- Express
-- Groq SDK (LLaMA 3.3 70B)
-- dotenv
-
-### Setup
+### Clone with submodules
 
 ```bash
-cd ChatBotBE
-npm install
+git clone --recurse-submodules https://github.com/Adrian55Stack/ChatBotRxjs
 ```
 
-Create a `.env` file in `ChatBotBE/`:
-
-```env
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-### Run
+If you already cloned without submodules:
 
 ```bash
-npm start
+git submodule update --init --recursive
 ```
 
-The server runs at `http://localhost:4000`.
-
-### Test
+### Update submodules to latest
 
 ```bash
-npm run test
-npm run test:coverage   # with coverage report
+git submodule update --remote
 ```
-
-### Build
-
-No compilation step required — Node.js runs the source directly.
-
----
-
-## CI/CD
-
-GitHub Actions workflows are defined in `.github/workflows/` and run on every push to `main` and on pull requests.
-
-The pipeline:
-1. Checks out the repository
-2. Installs dependencies for each project
-3. Runs tests and generates coverage reports
-
----
-
-## .gitignore Setup
-
-The project uses three `.gitignore` files:
-
-| File | Scope |
-|------|-------|
-| `/.gitignore` | Root — ignores workflow artifacts, editor files, OS files |
-| `/ChatBotFE/.gitignore` | Angular-specific — `node_modules`, `dist`, `coverage` |
-| `/ChatBotBE/.gitignore` | Node.js-specific — `node_modules`, `coverage`, `.env` |
-
-> ⚠️ Never commit your `.env` file. Your `GROQ_API_KEY` should be stored as a GitHub Actions secret and injected at runtime.
 
 ---
 
@@ -133,4 +48,20 @@ The project uses three `.gitignore` files:
 
 - Node.js v18+
 - npm v9+
-- A valid [Groq API key](https://console.groq.com)
+- A valid Grok API key
+
+---
+
+## CI/CD
+
+GitHub Actions workflows are defined in `.github/workflows/` and run on every push to `main` and on pull requests. Each submodule has its own independent pipeline.
+
+---
+
+## .gitignore Setup
+
+| File | Scope |
+|------|-------|
+| `/.gitignore` | Root — ignores workflow artifacts, editor files, OS files |
+| `/ChatBotFE/.gitignore` | Angular-specific — `node_modules`, `dist`, `coverage` |
+| `/ChatBotBE/.gitignore` | Node.js-specific — `node_modules`, `coverage`, `.env` |
